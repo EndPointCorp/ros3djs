@@ -49,6 +49,9 @@ ROS3D.MarkerArrayClient.prototype.subscribe = function(){
 };
 
 ROS3D.MarkerArrayClient.prototype.processMessage = function(arrayMessage){
+
+  var cleared = false;
+
   arrayMessage.markers.forEach(function(message) {
     if(message.action === 0) {
       var updated = false;
@@ -60,6 +63,15 @@ ROS3D.MarkerArrayClient.prototype.processMessage = function(arrayMessage){
         }
       }
       if(!updated) { // "ADD"
+        if (!cleared) {
+          cleared = true;
+          for (var m in this.markers){
+            this.markers[m].unsubscribeTf();
+            this.rootObject.remove(this.markers[m]);
+          }
+          this.markers = {};
+        }
+
         var newMarker = new ROS3D.Marker({
           message : message,
           path : this.path,
