@@ -23,6 +23,6 @@
   "dependencies": {
     "eventemitter2": "asyncly/EventEmitter2#~4.1.0",
     "threejs": "mrdoob/three.js#r88",
-    "roslibjs": "RobotWebTools/roslibjs#94676d1fef402e1174822c0c35d52de253497db4"
+    "roslibjs": "EndPointCorp/roslibjs#c9ce32babf36a9e475b857b8fd01ab4006d753dc"
   }
 }
